@@ -10,10 +10,24 @@ var containsDuplicate = function(nums) {
   return false; // If no duplicates found
 };
 
-document.getElementById("submit").addEventListener("click", function() {
+function handleDuplicate() {
   const input = document.getElementById("intervalsInput").value;
   // Parse input as an array of numbers
   const nums = input.match(/\d+/g).map(Number); // Extract numbers from input
   const result = containsDuplicate(nums);
   document.getElementById("output").innerText = result ? "true" : "false";
+}
+
+document.getElementById("submit").addEventListener("click", handleDuplicate);
+
+document.getElementById("intervalsInput").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    handleDuplicate();
+  }
+});
+
+// Add this script to clear the input field on page load
+document.addEventListener('DOMContentLoaded', function() {
+  var intervalsInput = document.getElementById('intervalsInput');
+  intervalsInput.value = ''; // Set the input value to an empty string
 });
